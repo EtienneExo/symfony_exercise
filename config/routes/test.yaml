@@ -1,8 +1,8 @@
-test:
-  path: /test/{name?world}
-  controller: App\Controller\HelloController::test
-  requirements:
-    name: "[A-z0-9]{0,}"
-  host: localhost
-  methods: [GET, POST]
-  schemes: [https, http]
+#test:
+#  path: /test/{name?world}
+#  controller: App\Controller\HelloController::test
+#  requirements:
+#    name: "[A-z0-9]{0,}"
+#  host: localhost
+#  methods: [GET, POST]
+#  schemes: [https, http]
