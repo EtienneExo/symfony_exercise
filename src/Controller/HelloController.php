@@ -17,7 +17,7 @@ class HelloController extends AbstractController
         $this->logger=$logger;
     }
     /**
-     * @Route("/test/{name?world}", name="test",method={"GET","POST"},host=localhost,schemes={"http","htpps"})
+     * @Route("/test/{name?world}", name="test", schemes={"http","htpps"})
      *
      */
     public function test($name)
