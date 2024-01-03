@@ -4,11 +4,11 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "*",
-        "doctrine/doctrine-bundle": "^2.4",
+        "doctrine/doctrine-bundle": "*",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.17",
         "symfony/console": "5.3.*",

@@ -11,20 +11,18 @@ class HelloController extends AbstractController
 {
     protected $logger;
     private $Title = "Hello ";
-    /**
-     * @Route("/hello", name="hello")
-     */
-    /**
-     * @param $logger
-     */
 
     public function __construct(LoggerInterface $logger)
     {
         $this->logger=$logger;
     }
+    /**
+     * @Route("/test/{name?world}", name="test",method={"GET","POST"},host=localhost,schemes={"http","htpps"})
+     *
+     */
     public function test($name)
     {
         $this->Title.=$name;
-        return $this->render('View/item/hello.html.twig ',["title"=>$this->Title]);
+        return $this->render('View/item/hello.html.twig',["title"=>$this->Title]);
     }
 }
