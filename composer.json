@@ -8,7 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.14",
-        "doctrine/doctrine-bundle": "*",
+        "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.17",
         "symfony/console": "5.3.*",
@@ -27,7 +27,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "cweagans/composer-patches": true
         },
         "optimize-autoloader": true,
         "preferred-install": {

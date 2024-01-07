@@ -2,32 +2,32 @@
 
 namespace App\Repository;
 
-use App\Entity\Roles;
+use App\Entity\Role;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Roles>
+ * @extends ServiceEntityRepository<Role>
  *
- * @method Roles|null find($id, $lockMode = null, $lockVersion = null)
- * @method Roles|null findOneBy(array $criteria, array $orderBy = null)
- * @method Roles[]    findAll()
- * @method Roles[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Role|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Role|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Role[]    findAll()
+ * @method Role[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RolesRepository extends ServiceEntityRepository
+class RoleRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Roles::class);
+        parent::__construct($registry, Role::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Roles $entity, bool $flush = true): void
+    public function add(Role $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -39,7 +39,7 @@ class RolesRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Roles $entity, bool $flush = true): void
+    public function remove(Role $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -48,7 +48,7 @@ class RolesRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Roles[] Returns an array of Roles objects
+    //  * @return Role[] Returns an array of Role objects
     //  */
     /*
     public function findByExampleField($value)
@@ -65,7 +65,7 @@ class RolesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Roles
+    public function findOneBySomeField($value): ?Role
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')
