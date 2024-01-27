@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1>{{ title }}</h1>
-{% if age < 18 %}
-<p>Tu es mineur</p>
-{% elseif age >= 18 %}
-<p>Tu es majeur</p>
-{% endif %}
+    {% block javascripts %}
+        <script src="{{asset('js/listener.js')}}" ></script>
+        {% endblock %}
+    <h1>{{ title }}</h1>
+    {% if age is defined %}
+        {% if age < 18 %}
+            <p>Tu es mineur</p>
+        {% elseif age>=18 %}
+            <p>Tu es majeur</p>
+        {% endif %}
+    {% endif %}
 {% endblock %}
