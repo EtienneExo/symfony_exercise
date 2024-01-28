@@ -44,15 +44,16 @@ class LoginController extends AbstractController
                 $session = $this->get("session");
                 $session->set('filter', array(
                     "idRole" => $user->getRole()->getId(),
-                    "usernale" => $user->getRole()->getId(),
+                    "username" => $user->getUsername(),
                     "idUser" => $user->getId()
                 ));
 
-                return $this->render('view/index.html.twig', ["title" => $this->title]);
+                dd($session);
+                return $this->render('view/index.html.twig', ["title"=>$this->title]);
             }
         }
 
-        return $this->render('view/index.html.twig', ["title" => $this->title,"errorLogin"=>"Error Login/Password"]);
+        return $this->render('view/index.html.twig', ["title"=>$this->title,"errorLogin"=>"Error Login/Password"]);
     }
 
 
