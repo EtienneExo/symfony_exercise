@@ -19,13 +19,13 @@ class LoginController extends AbstractController
         $this->title = 'Bienvenue sur la page de connexion';
     }
 
-    #[Route('/login', name: 'app_login')]
-    public function index(): Response
-    {
-        return $this->render('login/index.html.twig', [
-            'controller_name' => 'LoginController',
-        ]);
-    }
+    //#[Route('/login', name: 'app_login')]
+    //public function index(): Response
+    //{
+    //    return $this->render('login/index.html.twig', [
+    //        'controller_name' => 'LoginController',
+    //    ]);
+  //  }
 
     /**
      * @Route("/login", name="login",methods={"POST"})
@@ -35,9 +35,11 @@ class LoginController extends AbstractController
      */
     public function login(Request $request, EntityManagerInterface $manager): Response
     {
+        dd($request);
+
         $req = $request->request;
         if ($req->count() > 0 && $req->get("username") !== null && $req->get("password") !== null) {
-            $user = $manager->getRepository(User::class)->findOneBy($req->get("username"));
+            $user = $manager->getRepository(User::class)->findOneByLowerUsername($req->get("username"));
 
             if ($user !== null && password_verify($req->get("password"), $user->getPassword())) {
                 $this->title = "Bienvenue" . $user->getUsername() . " sur la premiere page";
