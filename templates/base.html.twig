@@ -17,7 +17,16 @@
         {% endblock %}
 
         {% block javascripts %}
-            {% endblock %}
+
+            <script>
+                $(document).ready(function(){
+                    $('.toast').toast('show');
+                });
+            </script>
+
+
+
+        {% endblock %}
     </head>
     <body>
     <!-- Barre de navigation avec support responsive Bootstrap -->
@@ -114,6 +123,8 @@
             {% if errorLogin is defined %}
 
                 <div class="toast" style="position: absolute;top: 5rem;right: 1rem;" role="alert" aria-live="assertive" data-delay="4000" aria-atomic="true"  >
+
+
 
                     <div class="toast-header" >
 
