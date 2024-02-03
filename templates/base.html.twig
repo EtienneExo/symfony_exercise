@@ -21,6 +21,14 @@
     </head>
     <body>
     <!-- Barre de navigation avec support responsive Bootstrap -->
+    {% set filter = app.session.get('filter') %}
+
+    {# Vérifie si la variable 'filter' n'est pas nulle #}
+    {% if filter  != null  %}
+        {% set idRole = filter['idRole'] %}
+        {% set idUser = filter['idUser'] %}
+        {% set username = filter['username'] %}
+    {% endif %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="/">eCommerce</a>
 
@@ -59,6 +67,7 @@
 
             <!-- Logique de connexion/déconnexion selon l'état de 'username' -->
 
+
             {% if username is not defined %}
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                     <li class="nav-item">
@@ -87,8 +96,24 @@
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenue {{ username }}</a>
+
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Mon compte</a>
+                        </div>
+
+
                         <div class="dropdown-menu">
                             <!-- Ajoutez des éléments de menu ici si nécessaire -->
+
+                            {% if idRole is defined and idRole == 1 %}
+                            <a class="dropdown-item" href="{{ path('index') }}"> Créer un utilisateur </a>
+                            {% endif %}
+
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+
                         </div>
                     </li>
                     <li class="nav-item nav-link">
@@ -107,18 +132,18 @@
         </div>
     </nav>
 
-        {% block body %}
-            {# Récupération de la variable 'filter' de la session de l'application #}
+       {#  {% block body %}
+
             {% set filter = app.session.get('filter')%}
 
-            {# Vérifie si la variable 'filter' n'est pas nulle #}
+
             {% if filter  != null  %}
                 {% set idRole = filter['idRole'] %}
                 {% set idUser = filte['idUser'] %}
                 {% set username = filte['username'] %}
             {% endif %}
 
-        {% endblock %}
+        {% endblock %}#}
 
 
     </body>

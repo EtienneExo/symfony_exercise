@@ -61,6 +61,18 @@ class LoginController extends AbstractController
         return $this->render('view/index.html.twig', ["title"=>$this->title,"errorLogin"=>"Error Login/Password"]);
     }
 
+    /**
+     * @Route("/logout", name="logout")
+     *
+     */
+    public function logout():Response
+    {
+        $session = $this->get('session');
+        $session->remove('filter');
+        return $this->render('View/index',['title'=>$this->title]);
+
+    }
+
 
 
 }
