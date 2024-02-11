@@ -24,6 +24,11 @@ class Role
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private ?string $name = null;
+
 
     public function __construct()
     {
@@ -34,6 +39,12 @@ class Role
     {
         return $this->id;
     }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
 
     /**
      * @return Collection<int, User>
