@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
+{% form_theme formAccount'bootstrap_4_layout.html.twig' %}
 {% block body %}
-    <h1>Création d'un nouvel utilisateur</h1>
+    <h1 class="py-lg-5" >Création un compte</h1>
+    <div class="col-md-5" >
+        {{ form(formAccount) }}
+    </div>
 {% endblock %}
 

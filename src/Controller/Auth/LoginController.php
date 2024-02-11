@@ -69,7 +69,7 @@ class LoginController extends AbstractController
     {
         $session = $this->get('session');
         $session->remove('filter');
-        return $this->render('View/index',['title'=>$this->title]);
+        return $this->render('view/index.html.twig',['title'=>$this->title]);
 
     }
 
