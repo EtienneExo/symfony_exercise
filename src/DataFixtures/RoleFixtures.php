@@ -5,13 +5,15 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Role;
+use App\Entity\User;
 
 class RoleFixtures extends Fixture
 {
+
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $product = new Product();
+        $manager->persist($product);
 
         $adminRole = new Role();
         $adminRole->setName('Admin');
@@ -22,5 +24,8 @@ class RoleFixtures extends Fixture
         $manager->persist($userRole);
 
         $manager->flush();
+
+
     }
+
 }

@@ -56,6 +56,39 @@ class UserRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return string[] Returns an array of all usernames
+     */
+    public function getAllUsernames(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT u.username FROM App\Entity\User u'
+        );
+
+        // Execute the query and return the usernames
+        return array_column($query->getScalarResult(), 'username');
+    }
+
+    /**
+     * @param string[] $usernames
+     * @return int[] Returns an array of role IDs
+     */
+    public function findRoleIdsByUsernames(array $usernames): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT u.role_id
+            FROM App\Entity\User u
+            WHERE u.username IN (:usernames)'
+        )->setParameter('usernames', $usernames);
+
+        // Execute the query and return the role IDs
+        return array_column($query->getScalarResult(), 'role_id');
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

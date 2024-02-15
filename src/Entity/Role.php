@@ -29,9 +29,9 @@ class Role
      */
     private ?string $name = null;
 
-
     public function __construct()
     {
+
         $this->users = new ArrayCollection();
     }
 
@@ -44,7 +44,6 @@ class Role
     {
         return $this->name;
     }
-
 
     /**
      * @return Collection<int, User>
@@ -84,7 +83,24 @@ class Role
      */
     public function setName(string $name): self
     {
-        $this->name = $name;
+
+        //$usernames=$this->userRepository->getAllUsernames;
+
+        //$roleIds = $this->userRepository->findRoleIdsByUsername($usernames);
+
+        //foreach ($roleIds as $roleId)
+        //{
+            //if( $roleId == 2 )
+            //{
+
+               // $this->$name = "Admin";
+
+           // }else
+           // {
+               // $this->$name  = "User";
+           // }
+
+       // }
 
         return $this;
     }

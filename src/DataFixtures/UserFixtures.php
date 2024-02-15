@@ -30,6 +30,8 @@ class UserFixtures extends Fixture
             $user->setUsername($value);
             $user->setPassword(password_hash('test',PASSWORD_BCRYPT));
 
+            dd($key);
+
             if($key ==5)
             {
                 $user->setRole($role);
