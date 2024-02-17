@@ -1,9 +1,24 @@
 {% extends 'base.html.twig' %}
 {% form_theme formAccount'bootstrap_4_layout.html.twig' %}
 {% block body %}
-    <h1 class="py-lg-5" >Création un compte</h1>
+    <h1 class="py-lg-5" >{% if editMode %} Mon compte {% else %}  Création un compte {% endif %}</h1>
     <div class="col-md-5" >
-        {{ form(formAccount) }}
+        {{ form_start(formAccount,{'attr':{'id':'userForm'}}) }}
+        {{ form_row(formAccount.username,{'attr':{'placeholder':'login','readOnly':editMode}}) }}
+        {% if not editMode %}
+        {{ form_row(formAccount.password) }}
+        <div class="form-group" >
+            <label for="confirmPassword" >Confirm password</label>
+            <input type="password" class="form-control" id="confirmPassword" >
+        </div>
+        {% endif %}
+        {{ form_row(formAccount.mail,{'attr':{'placeholder':'xxx@mail.com'}}) }}
+        {% if editMode and idRole > 1 %}
+        {{ form_row(formAccount.Role,{'attr':{'disabled':'disabled'}}) }}
+            {{ form_row(formAccount.Role)}}
+        {% endif %}
+        <button id="formUserSubmit" type="submit" class="btn btn-success">{% if editMode %} Enregistrer {% else %} Modifier {% endif %}</button>
+        {{ form_end(formAccount) }}
     </div>
 {% endblock %}
 

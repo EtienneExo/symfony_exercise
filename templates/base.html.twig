@@ -59,6 +59,7 @@
                     <div class="dropdown-menu">
                         {% if idRole is defined and idRole == 2 %}
                             <a class="dropdown-item" href="{{ path('account') }}">Créer un utilisateur</a>
+
                         {% endif %}
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
@@ -102,7 +103,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenue {{ username }}</a>
 
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Mon compte</a>
+                            <a href="{{ path('account/edit/{id}',{'id':idUser}) }}" class="dropdown-item">Mon compte</a>
                         </div>
 
                     </li>
