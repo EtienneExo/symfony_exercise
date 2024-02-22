@@ -6,16 +6,16 @@
         {{ form_start(formAccount,{'attr':{'id':'userForm'}}) }}
         {{ form_row(formAccount.username,{'attr':{'placeholder':'login','readOnly':editMode}}) }}
         {% if not editMode %}
-        {{ form_row(formAccount.password) }}
-        <div class="form-group" >
-            <label for="confirmPassword" >Confirm password</label>
-            <input type="password" class="form-control" id="confirmPassword" >
-        </div>
+           {{ form_row(formAccount.password) }}
+            <div class="form-group" >
+               <label for="confirmPassword" >Confirm password</label>
+               <input type="password" class="form-control" id="confirmPassword" >
+            </div>
         {% endif %}
         {{ form_row(formAccount.mail,{'attr':{'placeholder':'xxx@mail.com'}}) }}
         {% if editMode and idRole > 1 %}
-        {{ form_row(formAccount.Role,{'attr':{'disabled':'disabled'}}) }}
-            {{ form_row(formAccount.Role)}}
+           {{ form_row(formAccount.Role,{'attr':{'disabled':'disabled'}}) }}
+{#            {{ form_row(formAccount.Role)}}#}
         {% endif %}
         <button id="formUserSubmit" type="submit" class="btn btn-success">{% if editMode %} Enregistrer {% else %} Modifier {% endif %}</button>
         {{ form_end(formAccount) }}

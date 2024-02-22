@@ -36,7 +36,9 @@ class UsersController extends AbstractController
 
         $update = false;
 
-        if($request->attributes->get('_route')==='account_edit')
+        ///dd($request);
+
+        if($request->attributes->get('_route')==='account-edit')
         {
             $filter = $this->get('session')->get('filter');
             $idRoleUser = $filter->get('idRole');
