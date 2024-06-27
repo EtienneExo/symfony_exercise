@@ -57,6 +57,22 @@ class UserRepository extends ServiceEntityRepository
     }
 
     /**
+     * Finds a user by their username.
+     *
+     * @param string $username
+     * @return User|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findByUsername(string $username): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('lower(u.username) = lower(:username)')
+            ->setParameter('username', $username)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
      * @return string[] Returns an array of all usernames
      */
     public function getAllUsernames(): array

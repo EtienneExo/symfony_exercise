@@ -35,7 +35,7 @@ class LoginController extends AbstractController
      */
     public function login(Request $request, EntityManagerInterface $manager): Response
     {
-        //dd($request);
+       /* //dd($request);
 
         $req = $request->request;
         if ($req->count() > 0 && $req->get("username") !== null && $req->get("password") !== null) {
@@ -56,9 +56,9 @@ class LoginController extends AbstractController
                 //dd($session);
                 return $this->render('view/index.html.twig', ["title"=>$this->title]);
             }
-        }
+        }*/
 
-        return $this->render('view/index.html.twig', ["title"=>$this->title,"errorLogin"=>"Error Login/Password"]);
+        return $this->render('View/index', ["title"=>$this->title]);
     }
 
     /**

@@ -1,24 +1,39 @@
 {% extends 'base.html.twig' %}
-{% form_theme formAccount'bootstrap_4_layout.html.twig' %}
+{% form_theme formAccount 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-    <h1 class="py-lg-5" >{% if editMode %} Mon compte {% else %}  Création un compte {% endif %}</h1>
-    <div class="col-md-5" >
-        {{ form_start(formAccount,{'attr':{'id':'userForm'}}) }}
-        {{ form_row(formAccount.username,{'attr':{'placeholder':'login','readOnly':editMode}}) }}
+    {% if editMode %}
+    {% else %}
+        {% block javascripts %}
+            <script src="{{ asset('JS/listener.js') }}" ></script>
+        {% endblock %}
+    {% endif %}
+    <h1 class="py-lg-5">{% if editMode %} Mon compte {% else %} Création d'un compte {% endif %}</h1>
+    <div class="col-md-5">
+
+        {{ form_start(formAccount, {'attr': {'id': 'userForm'}}) }}
+        {{ form_row(formAccount.username, {'label':'Nom d \'utilisateur','attr': {'placeholder': 'login', 'readOnly': editMode, 'class': (formAccount.username.vars.valid ? '' : 'is-invalid')}}) }}
+        <div id="nomError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">Le login existe déjà</div>
         {% if not editMode %}
-           {{ form_row(formAccount.password) }}
-            <div class="form-group" >
-               <label for="confirmPassword" >Confirm password</label>
-               <input type="password" class="form-control" id="confirmPassword" >
+            <div class="form-group">
+                <input name="csrf_token" type="hidden" value="{{ csrf_token('login_form') }}">
             </div>
+            {{ form_row(formAccount.password, { 'label':'Mot de passe','attr': { 'class': (formAccount.password.vars.valid ? '' : 'is-invalid') } }) }}
+            {{ form_row(formAccount.confirm_password, { 'label':'Confirmer le mot de passe','attr': { 'class': (formAccount.confirm_password.vars.valid ? '' : 'is-invalid') } }) }}
+            <div id="passwordError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">Les passwords doivent être identiques</div>
+            <div id="passwordMatches" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">1 majuscule, 1 caractère spécial et 8 caractères</div>
         {% endif %}
-        {{ form_row(formAccount.mail,{'attr':{'placeholder':'xxx@mail.com'}}) }}
-        {% if editMode and idRole > 1 %}
-           {{ form_row(formAccount.Role,{'attr':{'disabled':'disabled'}}) }}
-{#            {{ form_row(formAccount.Role)}}#}
+        {{ form_row(formAccount.mail, {'label':'E-mail','attr': {'placeholder': 'xxx@mail.com', 'class': (formAccount.mail.vars.valid ? '' : 'is-invalid') }}) }}
+       {#  {% if editMode and idRole > 1 %}
+            {{ form_row(formAccount.Role, {'attr': {'disabled': 'disabled'}}) }}
+        {% else %}
+            {{ form_row(formAccount.Role) }}
+        {% endif %} #}
+        {% if editMode and role is defined and role == 'ROLE_USER' %}
+            {{ form_row(formAccount.Role, {'label': 'profile', 'attr': {'disabled': 'disabled'}}) }}
+        {% else %}
+            {{ form_row(formAccount.Role, {'label': 'profile'}) }}
         {% endif %}
-        <button id="formUserSubmit" type="submit" class="btn btn-success">{% if editMode %} Enregistrer {% else %} Modifier {% endif %}</button>
+        <button id="formUserSubmit" type="submit" class="btn btn-success">{% if not editMode %} Enregistrer {% else %} Modifier {% endif %}</button>
         {{ form_end(formAccount) }}
     </div>
 {% endblock %}
-

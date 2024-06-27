@@ -13,27 +13,21 @@
     {% endif %}
     <!-- Gestion des erreurs de connexion -->
 
-    {% if errorLogin is defined %}
-
-        <div class="toast" style="position: absolute;top: 5rem;right: 1rem;" role="alert" aria-live="assertive" data-delay="4000" aria-atomic="true"  >
-            <div class="toast-header" >
-
-                <strong class="mr-auto" >
-                    Error login
-                </strong>
-
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" >
-                    <span aria-hidden="true" >&times;</span>
+    {% for type, messages in app.flashes %}
+        <div class="toast ml-auto" role="alert" aria-live="assertive" data-delay="4000" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="mr-auto">Error</strong>
+                <small class="text-muted">just now</small>
+                <button type="button" class="ml-1 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">×</span>
                 </button>
-
             </div>
-
-            <div class="toast-body" >
-                <h2 class="text-danger" >{{ errorLogin }}</h2>
+            <div class="toast-body">
+                <h2 class="text-danger"> </h2>
             </div>
-
         </div>
+    {% endfor %}
 
-    {% endif %}
+
 
 {% endblock %}
