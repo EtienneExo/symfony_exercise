@@ -83,7 +83,7 @@ class LoginAuthenticator extends AbstractAuthenticator
         // TODO: Implement onAuthenticationFailure() method.
         $request->getSession()->getFlashBag()->add('error', 'invalid login/password');
         //dd($request);
-        return new RedirectResponse($this->urlGenerator->generate('homepage'));
+        return new RedirectResponse($this->urlGenerator->generate('index'));
     }
 
 
