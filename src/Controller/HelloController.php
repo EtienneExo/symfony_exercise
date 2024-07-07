@@ -17,7 +17,7 @@ class HelloController extends AbstractController
         $this->logger=$logger;
     }
 
-    #[Route("/test/{name?world}", name: "test", methods: ["GET","POST"] , schemes: ["http","https"])]
+    #[Route("/test/{name}", name: "test", methods: ["GET","POST"] , schemes: ["http","https"])]
     public function test($name)
     {
         $this->Title.=$name;

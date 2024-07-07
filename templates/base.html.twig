@@ -52,7 +52,7 @@
                     </a>
                 </li>
 
-                </li>
+
                  <li class="nav-item">
                  <a class="nav-link" href="{{ path("test",{"name":"lulu"})
                     }}">Créer un article</a>
@@ -62,21 +62,32 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                        href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu">
-                        {#{% if idRole is defined and idRole == 1 %} #}
+                        <a class="dropdown-item" href="{{ path('test', {'name': 'test'}) }}">Hello Xavier</a>
+
                         {% if idRole is defined and idRole == 'ROLE_ADMIN' %}
-                            <a class="dropdown-item" href="{{ path('/account/new') }}">Créer un utilisateur</a>
+                        {#{% if idRole is defined and idRole == 1 %} #}
+
+                            <a class="nav-link" href="{{ path('/account/new') }}">Créer un article</a>
+
 
                         {% endif %}
+                        {% if editMode and role is defined and role == 'ROLE_USER' %}
+                            {{ form_row(formAccount.Roles, {'label':'profile', 'attr':{'disabled':'disabled'}}) }}
+                        {% else %}
+                            {{ form_row(formAccount.Roles, {'label':'profile'}) }}
+                        {% endif %}
+
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Separated link</a>
 
+
                 </li>
             </ul>
 
-            <!-- Logique de connexion/déconnexion selon l'état de 'username' -->
+            <!-- Logique de connexion/déconnexion selon l'état de 'username'
 
 
             {% if username is not defined %}
@@ -102,7 +113,7 @@
                             </li>
                         </ul>
                     </li>
-                </ul>
+                </ul>  -->
             {% else %}
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                     <li class="nav-item dropdown">

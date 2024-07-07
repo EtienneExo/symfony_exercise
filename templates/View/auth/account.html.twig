@@ -14,10 +14,10 @@
         {{ form_row(formAccount.username, {'label':'Nom d \'utilisateur','attr': {'placeholder': 'login', 'readOnly': editMode, 'class': (formAccount.username.vars.valid ? '' : 'is-invalid')}}) }}
         <div id="nomError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">Le login existe déjà</div>
         {% if not editMode %}
+            {{ form_row(formAccount.password, { 'label':'Mot de passe','attr': { 'class': (formAccount.password.vars.valid ? '' : 'is-invalid') } }) }}
             <div class="form-group">
                 <input name="csrf_token" type="hidden" value="{{ csrf_token('login_form') }}">
             </div>
-            {{ form_row(formAccount.password, { 'label':'Mot de passe','attr': { 'class': (formAccount.password.vars.valid ? '' : 'is-invalid') } }) }}
             {{ form_row(formAccount.confirm_password, { 'label':'Confirmer le mot de passe','attr': { 'class': (formAccount.confirm_password.vars.valid ? '' : 'is-invalid') } }) }}
             <div id="passwordError" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">Les passwords doivent être identiques</div>
             <div id="passwordMatches" hidden="true" class="alert alert-danger col-md-12 col-md-offset-3">1 majuscule, 1 caractère spécial et 8 caractères</div>

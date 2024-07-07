@@ -8,7 +8,7 @@ security:
     providers:
         user_in_database :
             entity:
-                class: App\Entity\Users
+                class: App\Entity\User
                 property: username
 
 
@@ -35,7 +35,9 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
-
+    encoders :
+      App\Entity\User :
+        algorithm : bcrypt
 
 
     # Easy way to control access for large sections of your site
