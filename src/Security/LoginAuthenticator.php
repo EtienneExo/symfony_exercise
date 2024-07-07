@@ -46,6 +46,7 @@ class LoginAuthenticator extends AbstractAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         // Logique après une authentification réussie, par exemple rediriger l'utilisateur
+        //dd($token);
         return null; // Modifier selon la logique appropriée
     }
 
@@ -74,7 +75,8 @@ class LoginAuthenticator extends AbstractAuthenticator
                 new CsrfTokenBadge('login_form', $request->request->get('csrf_token'))
             ]
         );
-        //*dd($passport);
+        //dd(new CsrfTokenBadge('login_form', $request->request->get('csrf_token')));
+        //dd($passport);
         return $passport;
     }
 

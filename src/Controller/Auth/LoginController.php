@@ -58,7 +58,8 @@ class LoginController extends AbstractController
             }
         }*/
 
-        return $this->render('View/index', ["title"=>$this->title]);
+        //return $this->render('View/index', ["title"=>$this->title]);
+        return $this->render('view/index.html.twig', ["title"=>$this->title]);
     }
 
     /**

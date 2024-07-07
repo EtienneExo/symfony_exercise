@@ -35,6 +35,9 @@
         {% set idUser = app.user.id %}
         {% set username = app.user.username %}
     {% endif %}
+    <div class="form-group">
+        <input name="csrf_token" type="hidden" value="{{ csrf_token('login_form') }}">
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="/">eCommerce</a>
 
@@ -62,23 +65,34 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                        href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ path('test', {'name': 'test'}) }}">Hello Xavier</a>
+                        {#<a class="dropdown-item" href="{{ path('test', {'name': 'test'}) }}">Hello Xavier</a>#}
 
-                        {#{% if idRole is defined and idRole == 'ROLE_ADMIN' %} #}
-                        {% if app.user is not null and app.user.roles[0] == 'ROLE_ADMIN' %}
+                        {#<a class="dropdown-item" href="{{ path('test', {'name': 'test'}) }}">Hello Xavier</a> #}
 
-                            {#{% if idRole is defined and idRole == 1 %} #}
+                        {#{% if idRole is defined and idRole == 'ROLE_ADMIN' %} // a effacer %}
+                        {% if app.user is not null and app.user.roles[0] == 'ROLE_ADMIN'
+
+                            {#{% if idRole is defined and idRole == 1 %} /// a effacer
 
                             <a class="nav-link" href="{{ path('/account/new') }}">Créer un article</a>
 
 
                         {% endif %}
-                        {#{% if editMode and role is defined and role == 'ROLE_USER' %}#}
+                        {#{% if editMode and role is defined and role == 'ROLE_USER' %} // a effacer
                         {% if editMode and app.user.roles[0] is defined and app.user.roles[0] == 'ROLE_USER' %}
-                            {{ form_row(formAccount.Roles, {'label':'profile', 'attr':{'disabled':'disabled'}}) }}
+                            {{ form_row(formAccount.Role, {'label':'profile', 'attr':{'disabled':'disabled'}}) }}
                         {% else %}
-                            {{ form_row(formAccount.Roles, {'label':'profile'}) }}
+                            {{ form_row(formAccount.Role, {'label':'profile'}) }}
+                        {% endif %} #}
+
+
+
+                        {% if app.user is not null and app.user.roles[0] == 'ROLE_ADMIN' %}
+                            <a class="nav-link" href="{{ path('account_new') }}">Créer un article</a>
                         {% endif %}
+
+
+
 
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
@@ -90,7 +104,7 @@
                 </li>
             </ul>
 
-            <!-- Logique de connexion/déconnexion selon l'état de 'username'
+            <!-- Logique de connexion/déconnexion selon l'état de 'username'-->
 
 
             {% if username is not defined %}
@@ -100,6 +114,9 @@
                         <ul class="dropdown-menu dropdown-menu-right mt-2">
                             <li class="px-3 py-2">
                                 <form class="form" role="form" method="post" action="{{ path("login") }}">
+                                    <div class="form-group">
+                                        <input name="csrf_token" type="hidden" value="{{ csrf_token('login_form') }}">
+                                    </div>
                                     <div class="form-group">
                                         <input id="username"  name="username" placeholder="username" class="form-control form-control-sm" type="text" >
                                     </div>
@@ -116,7 +133,7 @@
                             </li>
                         </ul>
                     </li>
-                </ul>  -->
+                </ul>
             {% else %}
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                     <li class="nav-item dropdown">
@@ -149,15 +166,13 @@
 
 
     <script type="text/javascript">
-        // Vérifie si idRole est défini et log sa valeur dans la console du navigateur
-        {% if idRole is defined %}
-        console.log('idRole:', '{{ idRole }}');
-        console.log('username:', '{{ username }}');
-        console.log('idUser:', '{{ idUser }}');
+        {% if app.user is not null %}
+        console.log('Role:', '{{ role }}');
+        console.log('Username:', '{{ username }}');
+        console.log('User ID:', '{{ idUser }}');
         {% else %}
-        console.log('idRole is not defined');
+        console.log('User is not logged in');
         {% endif %}
     </script>
-
     </body>
 </html>

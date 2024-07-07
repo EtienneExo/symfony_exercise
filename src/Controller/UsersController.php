@@ -30,7 +30,7 @@ class UsersController extends AbstractController
 {
 
     /**
-     * @Route ("/account/new",name="account")
+     * @Route ("/account/new",name="account_new")
      * @Route ("/account/edit/{id}",name="account-edit")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
