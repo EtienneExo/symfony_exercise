@@ -9,6 +9,9 @@
     {% endif %}
     <h1 class="py-lg-5">{% if editMode %} Mon compte {% else %} Création d'un compte {% endif %}</h1>
     <div class="col-md-5">
+        <div class="form-group">
+            <input name="csrf_token" type="hidden" value="{{ csrf_token('login_form') }}">
+        </div>
 
         {{ form_start(formAccount, {'attr': {'id': 'userForm'}}) }}
         {{ form_row(formAccount.username, {'label':'Nom d \'utilisateur','attr': {'placeholder': 'login', 'readOnly': editMode, 'class': (formAccount.username.vars.valid ? '' : 'is-invalid')}}) }}
